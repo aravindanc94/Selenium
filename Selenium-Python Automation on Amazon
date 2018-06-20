@@ -1,0 +1,123 @@
+#Selenium-Python automation on Amazon
+from selenium import webdriver
+from threading import Timer
+import time
+
+# Open browser
+firefox = webdriver.Firefox()
+firefox.get("https://www.amazon.com/")
+
+# Login
+def login():
+    try:
+        firefox.find_element_by_xpath("//a[@id='nav-link-accountList']").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//input[@id='ap_email']").send_keys("aravindan1994c@gmail.com")
+        firefox.find_element_by_xpath("//input[@id='continue']").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//input[@id='ap_password']").send_keys("Tamil@090764")
+        firefox.find_element_by_xpath("//input[@id='signInSubmit']").click()
+    except Exception as E:
+        print(E)
+    finally:
+        selectDepartment()
+
+# Select Department
+def selectDepartment():
+    try:
+        firefox.find_element_by_xpath("//a[@id='nav-link-shopall']").click()
+    except Exception as E:
+        print(E)
+    finally:
+        firestick()
+
+#####AMAZON FIRE TV#####
+def firestick():
+    try:
+        firefox.find_element_by_xpath("//a[text()='Fire TV Stick']").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//input[@id='add-to-cart-button']").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//button[@class=' a-button-close a-declarative']").click()
+        firefox.find_element_by_xpath("//a[@id='nav-link-shopall']").click()
+    except Exception as E:
+        print(E)
+    finally:
+        prime()
+
+#####AMAZON PRIME#####
+def prime():
+    try:
+        firefox.find_element_by_xpath("//a[text()='All Videos']").click()
+        time.sleep(5)
+        firefox.find_element_by_xpath("//a[@id='nav-link-shopall']").click()
+    except Exception as E:
+        print(E)
+    finally:
+        toys()
+
+#####TOYS#####
+def toys():
+    try:
+        firefox.find_element_by_xpath("//a[@href='/toys/b/ref=sd_allcat_tg?ie=UTF8&node=165793011']").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//div[9]/div[1]/div[@class='bxc-grid__content   bxc-grid__content--light' and 1]/div[@class='bxc-grid__image   bxc-grid__image--light' and 1]/a[1]/img[1]").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//div[@id='mgszruiaym']/a[@class='style__overlay__2qYgu style__overlay__2pc5x' and 1]").click()
+        firefox.find_element_by_xpath("//div[@id='7ns2snhl2a']/a[@class='style__overlay__2qYgu style__overlay__2pc5x' and 1]").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//input[@id='add-to-cart-button']").click()
+        firefox.find_element_by_xpath("//a[@id='nav-link-shopall']").click()
+    except Exception as E:
+        print(E)
+    finally:
+        alexa()
+
+#####ALEXA #####
+def alexa():
+    try:
+        firefox.find_element_by_xpath("//a[text()='Meet Alexa']").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//li[2]/div[@class='a-box-group a-spacing-top-micro acs_product-title' and 1]/a[@class='a-link-normal' and 1]/span[@class='a-size-base' and 1]").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//input[@id='add-to-cart-button']").click()
+        time.sleep(2)
+        firefox.find_element_by_xpath("//button[@class=' a-button-close a-declarative']").click()
+        firefox.find_element_by_xpath("//a[@id='nav-link-shopall']").click()
+    except Exception as E:
+        print(E)
+    finally:
+        checkout()
+# def books():
+#     firefox.find_element_by_xpath("//a[text()='Books']").click()
+#     firefox.find_element_by_xpath("//div[1]/div[2]/div[@class='bxc-grid__content   bxc-grid__content--light' and 1]/div[@class='bxc-grid__image   bxc-grid__image--light' and 1]/a[1]/img[1]").click()
+#     time.sleep(2)
+#     firefox.find_element_by_xpath("//div[@id='100_dealView_2']/div[@class='a-section dealContainer' and 1]/div[@class='a-section layer' and 2]/div[@class='a-row dealContainer dealTile' and 1]/div[@class='a-row dealDetailContainer' and 1]/div[@class='a-row a-spacing-mini' and 4]/a[@id='dealTitle' and @class='a-size-base a-link-normal dealTitleTwoLine singleCellTitle autoHeight' and 1]/span[@class='a-declarative' and 1]").click()
+#     time.sleep(2)
+#     firefox.find_element_by_xpath("//div[@class='a-popover-footer']/div[@class='a-section' and 1]/span[@class='a-declarative' and ").click()
+#     firefox.find_element_by_xpath("//input[@id='add-to-cart-button']").click()
+#     firefox.find_element_by_xpath("//a[@id='nav-link-shopall']").click()
+
+def checkout():
+    try:
+        firefox.find_element_by_xpath("//a[@id='nav-cart']").click()
+        time.sleep(3)
+        firefox.find_element_by_xpath("//span[@id='sc-buy-box-ptc-button']/span[@class='a-button-inner' and 1]/input[@class='a-button-input' and 1]").click()
+        firefox.find_element_by_xpath("//input[@id='enterAddressAddressLine1']").send_keys("76b, 4th street, sudharsan nagar")
+        firefox.find_element_by_xpath("//input[@id='enterAddressAddressLine2']").send_keys("Ashtalakshmi Apts")
+        firefox.find_element_by_xpath("//input[@id='enterAddressCity']").send_keys("chennai")
+        firefox.find_element_by_xpath("//input[@id='enterAddressStateOrRegion']").send_keys("Tamilnadu")
+        firefox.find_element_by_xpath("//input[@id='enterAddressPostalCode']").send_keys("600126")
+        # firefox.find_element_by_xpath("//select[@id='enterAddressCountryCode']").click()
+        firefox.find_element_by_name("India").is_selected()
+    except Exception as E:
+        print(E)
+login()
+selectDepartment()
+firestick()
+prime()
+toys()
+alexa()
+checkout()
+# books()
+firefox.find_element_by_xpath("//a[@id='nav-cart']").click()
